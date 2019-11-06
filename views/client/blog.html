@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        {% for item in listD %}
+        <div class="jumbotron">
+            <h1>{{item.title}}</h1>
+            <p>{{item.intro}}</p>
+            <p>
+                <a class="btn btn-primary" href='/detail?idx={{item.id}}' role="button">更多</a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

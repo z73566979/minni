@@ -1,0 +1,78 @@
+{% extends 'layout.html' %} {% block cont %}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">文章发布</h3>
+            <div class="box-tools">
+                <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+            <!-- 标题  作者  日期  简介  详情  图片 -->
+            <!-- new Date -->
+            <div class="box-body">
+                <div class="form-group">
+                    <label>文章标题</label>
+                    <input type="text" class="form-control" placeholder="请输入文章标题">
+                </div>
+                <div class="form-group">
+                    <label>作者名称</label>
+                    <input type="text" class="form-control" placeholder="请输入作者名称">
+                </div>
+                <div class="form-group">
+                    <label>发布时间</label>
+                    <input type="text" class="form-control" placeholder="请输入发布时间">
+                </div>
+                <div class="form-group">
+                    <label>文章简介</label>
+                    <textarea class="form-control" placeholder="请输入文章简介"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>海报图片</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="form-group">
+                    <label>文章详情</label>
+                    <textarea class="form-control" placeholder="请输入文章详情"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn-primary">确定发布</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</section>
+<script>
+    $('.btn-primary').click(function() {
+        $.ajax({
+            url: '/admin/add',
+            method: 'post',
+            data: {
+                'title': $('.box-body input').eq(0).val(),
+                'author': $('.box-body input').eq(1).val(),
+                'time': $('.box-body input').eq(2).val(),
+                'intro': $('.box-body textarea').eq(0).val(),
+                'words': $('.box-body textarea').eq(1).val(),
+            },
+            success: function(result) {
+                // console.log(result)
+                if (result.code == 1) {
+                    alert('发布成功')
+                    location = '/admin/list';
+                }
+            }
+        })
+    })
+</script>
+
+{% endblock %}
